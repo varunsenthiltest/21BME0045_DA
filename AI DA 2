@@ -1,0 +1,42 @@
+def size_membership(size):
+    if size <= 5:
+        return 1 if size <= 2 else (5 - size) / 3
+    else:
+        return 0 if size >= 8 else (size - 5) / 3
+
+def weight_membership(weight):
+    if weight <= 5:
+        return 1 if weight <= 2 else (5 - weight) / 3
+    else:
+        return 0 if weight >= 8 else (weight - 5) / 3
+
+def fuzzy_rules(size, weight):
+    if size <= 5 and weight <= 5:
+        return 'small'
+    elif size > 5 and weight > 5:
+        return 'large'
+    else:
+        return 'medium'
+
+def defuzzify(category):
+    if category == 'small':
+        return 2.5
+    elif category == 'medium':
+        return 7.5
+    else:
+        return 10
+
+input_size = 7
+input_weight = 3
+
+size_membership_value = size_membership(input_size)
+weight_membership_value = weight_membership(input_weight)
+
+output_category = fuzzy_rules(input_size, input_weight)
+
+crisp_output = defuzzify(output_category)
+
+print("Size Membership:", size_membership_value)
+print("Weight Membership:", weight_membership_value)
+print("Output Category:", output_category)
+print("Crisp Output:", crisp_output)
